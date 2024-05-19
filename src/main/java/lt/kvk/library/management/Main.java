@@ -11,13 +11,11 @@ import java.util.List;
 public class Main {
 	public static void main(String[] args) {
 		Library library = new Library();
-		String booksFilePath = "src/books.txt";
-		String authorsFilePath = "src/authors.txt";
 
 		try {
 			// Pradinių duomenų skaitymas iš failų
-			List<Book> books = FileUtils.readBooksFromFile(booksFilePath);
-			List<Author> authors = FileUtils.readAuthorsFromFile(authorsFilePath);
+			List<Book> books = FileUtils.readBooksFromFile();
+			List<Author> authors = FileUtils.readAuthorsFromFile();
 
 			// Pridėkime knygas ir autorius į biblioteką
 			books.forEach(library::addBook);
@@ -66,8 +64,8 @@ public class Main {
 			System.out.println("Is '1984' borrowed? " + bookToBorrow.isBorrowed());
 
 			// Įrašymas į failus
-			FileUtils.writeBooksToFile(books, booksFilePath);
-			FileUtils.writeAuthorsToFile(authors, authorsFilePath);
+			FileUtils.writeBooksToFile(books);
+			FileUtils.writeAuthorsToFile(authors);
 
 		} catch (IOException e) {
 			System.err.println("Error reading or writing to file: " + e.getMessage());

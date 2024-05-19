@@ -4,9 +4,11 @@ import lt.kvk.library.management.models.Author;
 import lt.kvk.library.management.models.Book;
 import lt.kvk.library.management.models.BookGenre;
 import lt.kvk.library.management.models.Borrowable;
+import lt.kvk.library.management.utils.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,5 +84,39 @@ public class LibraryTest {
 
 		borrowable.returnItem();
 		assertFalse(borrowable.isBorrowed());
+	}
+
+	@Test
+	public void testWriteAndReadBooks() throws IOException {
+		List<Book> books = List.of(
+				new Book("Knyga1", new Author("Autorius1"), BookGenre.FICTION),
+				new Book("Knyga2", new Author("Autorius2"), BookGenre.MYSTERY)
+		);
+
+		FileUtils.writeBooksToFile(books); // Perrašome failą
+		List<Book> readBooks = FileUtils.readBooksFromFile();
+
+		assertEquals(books.size(), readBooks.size());
+		for (int i = 0; i < books.size(); i++) {
+			assertEquals(books.get(i).getTitle(), readBooks.get(i).getTitle());
+			assertEquals(books.get(i).getAuthor().getName(), readBooks.get(i).getAuthor().getName());
+			assertEquals(books.get(i).getGenre(), readBooks.get(i).getGenre());
+		}
+	}
+
+	@Test
+	public void testWriteAndReadAuthors() throws IOException {
+		List<Author> authors = List.of(
+				new Author("Autorius1"),
+				new Author("Autorius2")
+		);
+
+		FileUtils.writeAuthorsToFile(authors); // Perrašome failą
+		List<Author> readAuthors = FileUtils.readAuthorsFromFile();
+
+		assertEquals(authors.size(), readAuthors.size());
+		for (int i = 0; i < authors.size(); i++) {
+			assertEquals(authors.get(i).getName(), readAuthors.get(i).getName());
+		}
 	}
 }
