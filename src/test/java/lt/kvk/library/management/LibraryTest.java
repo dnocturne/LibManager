@@ -45,6 +45,22 @@ public class LibraryTest {
 	}
 
 	@Test
+	public void testSortBooksByTitle() {
+		List<Book> results = library.sortBooksByTitle();
+		assertEquals(2, results.size());
+		assertEquals("Harry Potter", results.get(0).getTitle());
+		assertEquals("The Hobbit", results.get(1).getTitle());
+	}
+
+	@Test
+	public void testSortBooksByAuthor() {
+		List<Book> results = library.sortBooksByAuthor();
+		assertEquals(2, results.size());
+		assertEquals("J.K. Rowling", results.get(0).getAuthor().getName());
+		assertEquals("J.R.R. Tolkien", results.get(1).getAuthor().getName());
+	}
+
+	@Test
 	public void testBorrowable() {
 		Book book = library.searchBooksByTitle("Harry Potter").get(0);
 		assertFalse(book.isBorrowed());

@@ -5,6 +5,7 @@ import lt.kvk.library.management.models.Book;
 import lt.kvk.library.management.models.BookGenre;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,18 @@ public class Library {
 	public List<Book> filterBooksByGenre(BookGenre genre) {
 		return books.stream()
 				.filter(book -> book.getGenre() == genre)
+				.collect(Collectors.toList());
+	}
+
+	public List<Book> sortBooksByTitle() {
+		return books.stream()
+				.sorted(Comparator.comparing(Book::getTitle))
+				.collect(Collectors.toList());
+	}
+
+	public List<Book> sortBooksByAuthor() {
+		return books.stream()
+				.sorted(Comparator.comparing(book -> book.getAuthor().getName()))
 				.collect(Collectors.toList());
 	}
 }
