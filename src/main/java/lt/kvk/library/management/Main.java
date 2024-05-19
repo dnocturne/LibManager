@@ -8,7 +8,7 @@ import lt.kvk.library.management.utils.FileUtils;
 import java.io.IOException;
 import java.util.List;
 
-class Main {
+public class Main {
 	public static void main(String[] args) {
 		Library library = new Library();
 		String booksFilePath = "src/books.txt";
@@ -33,7 +33,7 @@ class Main {
 
 			// Naujos knygos ir autoriaus pridėjimas
 			Author newAuthor = new Author("George Orwell");
-			Book newBook = new Book("1984", newAuthor, BookGenre.SCI_FI);
+			Book newBook = new Book("1984", newAuthor, BookGenre.SCI_FI); // Naudojame enum konstantą
 
 			library.addBook(newBook);
 			library.addAuthor(newAuthor);
@@ -57,6 +57,13 @@ class Main {
 				System.out.println("Genre: " + book.getGenre().getGenreName());
 				System.out.println();
 			}
+
+			// Borrowable testas
+			Book bookToBorrow = library.searchBooksByTitle("1984").get(0);
+			bookToBorrow.borrowItem();
+			System.out.println("Is '1984' borrowed? " + bookToBorrow.isBorrowed());
+			bookToBorrow.returnItem();
+			System.out.println("Is '1984' borrowed? " + bookToBorrow.isBorrowed());
 
 			// Įrašymas į failus
 			FileUtils.writeBooksToFile(books, booksFilePath);
