@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Library {
-	private List<Book> books = new ArrayList<>();
-	private List<Author> authors = new ArrayList<>();
+	private final List<Book> books = new ArrayList<>();
+	private final List<Author> authors = new ArrayList<>();
 
 	public void addBook(Book book) {
 		books.add(book);

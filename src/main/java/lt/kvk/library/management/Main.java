@@ -23,9 +23,9 @@ public class Main {
 
 			// Parodyti visus skaitytus knygos duomenis
 			for (Book book : books) {
-				System.out.println("Book title: " + book.getTitle());
-				System.out.println("Author: " + book.getAuthor().getName());
-				System.out.println("Genre: " + book.getGenre().getGenreName());
+				System.out.println("Knygos pavadinimas: " + book.getTitle());
+				System.out.println("Autorius: " + book.getAuthor().getName());
+				System.out.println("Žanras: " + book.getGenre().getGenreName());
 				System.out.println();
 			}
 
@@ -37,38 +37,38 @@ public class Main {
 			library.addAuthor(newAuthor);
 
 			// Paieškos testas
-			System.out.println("Search for '1984':");
+			System.out.println("Ieškome '1984':");
 			List<Book> searchResults = library.searchBooksByTitle("1984");
 			for (Book book : searchResults) {
-				System.out.println("Book title: " + book.getTitle());
-				System.out.println("Author: " + book.getAuthor().getName());
-				System.out.println("Genre: " + book.getGenre().getGenreName());
+				System.out.println("Knygos pavadinimas: " + book.getTitle());
+				System.out.println("Autorius: " + book.getAuthor().getName());
+				System.out.println("Žanras: " + book.getGenre().getGenreName());
 				System.out.println();
 			}
 
 			// Filtravimo testas
-			System.out.println("Filter books by genre SCI_FI:");
+			System.out.println("Filtruojam knygas pagal žanrą SCI_FI:");
 			List<Book> filterResults = library.filterBooksByGenre(BookGenre.SCI_FI);
 			for (Book book : filterResults) {
-				System.out.println("Book title: " + book.getTitle());
-				System.out.println("Author: " + book.getAuthor().getName());
-				System.out.println("Genre: " + book.getGenre().getGenreName());
+				System.out.println("Knygos pavadinimas: " + book.getTitle());
+				System.out.println("Autorius: " + book.getAuthor().getName());
+				System.out.println("Žanras: " + book.getGenre().getGenreName());
 				System.out.println();
 			}
 
 			// Borrowable testas
 			Book bookToBorrow = library.searchBooksByTitle("1984").get(0);
 			bookToBorrow.borrowItem();
-			System.out.println("Is '1984' borrowed? " + bookToBorrow.isBorrowed());
+			System.out.println("Ar '1984' yra borrowed? " + bookToBorrow.isBorrowed());
 			bookToBorrow.returnItem();
-			System.out.println("Is '1984' borrowed? " + bookToBorrow.isBorrowed());
+			System.out.println("Ar '1984' yra borrowed? " + bookToBorrow.isBorrowed());
 
 			// Įrašymas į failus
 			FileUtils.writeBooksToFile(books);
 			FileUtils.writeAuthorsToFile(authors);
 
 		} catch (IOException e) {
-			System.err.println("Error reading or writing to file: " + e.getMessage());
+			System.err.println("Klaida skaitant ar įrašant į failą: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}

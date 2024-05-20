@@ -1,7 +1,7 @@
 package lt.kvk.library.management.models;
 
 public class Book extends LibraryItem implements Borrowable {
-	private String title;
+	private final String title;
 	private Author author;
 	private BookGenre genre;
 	private boolean borrowed;
@@ -16,13 +16,6 @@ public class Book extends LibraryItem implements Borrowable {
 	// Getteriai ir setteriai su tikrinimu
 	public String getTitle() {
 		return title;
-	}
-
-	public void setTitle(String title) {
-		if (title == null || title.isEmpty()) {
-			throw new IllegalArgumentException("Title cannot be null or empty");
-		}
-		this.title = title;
 	}
 
 	public Author getAuthor() {
@@ -45,9 +38,9 @@ public class Book extends LibraryItem implements Borrowable {
 	public void borrowItem() {
 		if (!borrowed) {
 			borrowed = true;
-			System.out.println(title + " has been borrowed.");
+			System.out.println(title + " buvo borrowed.");
 		} else {
-			System.out.println(title + " is already borrowed.");
+			System.out.println(title + " jau yra borrowed.");
 		}
 	}
 
@@ -55,9 +48,9 @@ public class Book extends LibraryItem implements Borrowable {
 	public void returnItem() {
 		if (borrowed) {
 			borrowed = false;
-			System.out.println(title + " has been returned.");
+			System.out.println(title + " buvo grąžintas.");
 		} else {
-			System.out.println(title + " was not borrowed.");
+			System.out.println(title + " nebuvo borrowed.");
 		}
 	}
 
